@@ -235,21 +235,45 @@ boardThree[16] = -14; boardThree[39] = -23 ; boardThree[47] = -07 ; boardThree[6
 var positionThree = 0
 var diceThree = 0
 
-gameLoop: while positionThree != squaresThree {
+gameLööp: while positionThree != squaresThree {
     diceThree += 1
     if diceThree == 7 {diceThree = 1}
     
     switch positionThree + diceThree {
     case squaresThree:
-        break gameLoop
+        break gameLööp
     case let newSquare where newSquare > squaresThree:
-        continue gameLoop
+        continue gameLööp
     default:
         positionThree += diceThree
         positionThree += boardThree[positionThree]
     }
 }
 print("Game Over!!")
+
+//8: Early Exit - like an if statement, but always has an else clause
+
+//a: Guard-else example
+
+func greet(person: [String: String]) {
+    guard let name = person["name"] else {
+        return
+    }
+    
+    print("Hello \(name)!")
+    
+    guard let location = person["location"] else {
+        print("I hope the weather is nice near you.")
+        return
+    }
+    print("I hope the weather is nice in \(location).")
+}
+
+greet(person: ["name": "Aanya", "location": "Chicago"])
+
+//if guard statement is met then whatever comes after the closing brace is executed, otherwise the else clause is executed. The else clause needs to start an exit statement (return, break etc)
+
+//9: API Availability - use if #available ... else
 
 
 
